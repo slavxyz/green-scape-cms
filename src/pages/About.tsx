@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Clock } from "lucide-react";
+import ContactForm from "@/components/contact/ContactForm";
 
 export default function About() {
   const { data } = useSiteData();
@@ -72,6 +73,23 @@ export default function About() {
                   <p className="text-sm text-muted-foreground">{member.role}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="py-12 md:py-16">
+          <div className="container">
+            <div className="mx-auto max-w-2xl">
+              <h2 className="text-center font-display text-2xl font-bold text-foreground md:text-3xl">
+                Get in Touch
+              </h2>
+              <p className="mt-3 text-center text-muted-foreground">
+                Have a question or want to work with us? Drop us a message.
+              </p>
+              <div className="mt-8">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </section>
