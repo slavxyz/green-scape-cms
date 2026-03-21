@@ -76,6 +76,23 @@ export default function About() {
             </div>
           </div>
         </section>
+
+        {/* Contact Form */}
+        <section className="py-12 md:py-16">
+          <div className="container">
+            <div className="mx-auto max-w-2xl">
+              <h2 className="text-center font-display text-2xl font-bold text-foreground md:text-3xl">
+                Get in Touch
+              </h2>
+              <p className="mt-3 text-center text-muted-foreground">
+                Have a question or want to work with us? Drop us a message.
+              </p>
+              <div className="mt-8">
+                <ContactForm />
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
