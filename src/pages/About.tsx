@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Clock } from "lucide-react";
+import ContactForm from "@/components/contact/ContactForm";
 
 export default function About() {
   const { data } = useSiteData();
