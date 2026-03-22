@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSiteData } from "@/contexts/SiteDataContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function HeroCarousel() {
   const { data } = useSiteData();
+  const { t } = useLanguage();
   const [current, setCurrent] = useState(0);
   const images = data.heroImages;
 
@@ -17,6 +19,8 @@ export default function HeroCarousel() {
   }, [next]);
 
   if (!images.length) return null;
+
+  const titleLines = t("hero.title").split("\n");
 
   return (
     <section className="relative h-[400px] overflow-hidden md:h-[550px]">
@@ -31,39 +35,29 @@ export default function HeroCarousel() {
         </div>
       ))}
 
-      {/* Overlay text */}
       <div className="absolute inset-0 flex items-end">
         <div className="container pb-16">
           <h1 className="font-display text-3xl font-bold text-white drop-shadow-lg md:text-5xl">
-            Transform Your
-            <br />
-            Outdoor Space
+            {titleLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < titleLines.length - 1 && <br />}
+              </span>
+            ))}
           </h1>
           <p className="mt-3 max-w-lg text-base text-white/90 drop-shadow md:text-lg">
-            Professional landscaping, mowing, planting, and irrigation services for homes and businesses.
+            {t("hero.subtitle")}
           </p>
         </div>
       </div>
 
-      {/* Navigation */}
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/30 text-white backdrop-blur hover:bg-background/50"
-      >
+      <Button variant="ghost" size="icon" onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/30 text-white backdrop-blur hover:bg-background/50">
         <ChevronLeft className="h-6 w-6" />
       </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/30 text-white backdrop-blur hover:bg-background/50"
-      >
+      <Button variant="ghost" size="icon" onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/30 text-white backdrop-blur hover:bg-background/50">
         <ChevronRight className="h-6 w-6" />
       </Button>
 
-      {/* Dots */}
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
         {images.map((_, i) => (
           <button
