@@ -1,31 +1,39 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
-import { Phone, Menu, X, Leaf } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Phone, Menu, X, Leaf, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/projects", label: "Projects" },
-  { to: "/blog", label: "Blog" },
-  { to: "/about", label: "About Us" },
-];
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
   const { data } = useSiteData();
+  const { t, currentLang, setCurrentLang, languages } = useLanguage();
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const navLinks = [
+    { to: "/", label: t("nav.home") },
+    { to: "/projects", label: t("nav.projects") },
+    { to: "/blog", label: t("nav.blog") },
+    { to: "/about", label: t("nav.about") },
+  ];
+
+  const currentFlag = languages.find((l) => l.code === currentLang)?.flag || "🌐";
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <Leaf className="h-7 w-7 text-primary" />
           <span className="font-display text-xl font-bold text-primary">{data.companyName}</span>
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link
@@ -40,8 +48,31 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Phone + mobile toggle */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
+          {/* Language Switcher */}
+          {languages.length > 1 && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="gap-1.5 text-sm">
+                  <Globe className="h-4 w-4" />
+                  <span>{currentFlag}</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {languages.map((lang) => (
+                  <DropdownMenuItem
+                    key={lang.code}
+                    onClick={() => setCurrentLang(lang.code)}
+                    className={currentLang === lang.code ? "bg-secondary" : ""}
+                  >
+                    <span className="mr-2">{lang.flag}</span>
+                    {lang.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
+
           <a
             href={`tel:${data.phone}`}
             className="hidden items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 sm:flex"
@@ -61,7 +92,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="border-t bg-background md:hidden">
           <nav className="container flex flex-col gap-1 py-4">
@@ -77,6 +107,20 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
+            {languages.length > 1 && (
+              <div className="mt-2 flex flex-wrap gap-2 px-3">
+                {languages.map((lang) => (
+                  <Button
+                    key={lang.code}
+                    variant={currentLang === lang.code ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => { setCurrentLang(lang.code); setMobileOpen(false); }}
+                  >
+                    {lang.flag} {lang.name}
+                  </Button>
+                ))}
+              </div>
+            )}
             <a
               href={`tel:${data.phone}`}
               className="mt-2 flex items-center gap-1.5 rounded-md bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground"
