@@ -1,6 +1,7 @@
 // src/globals/PageTransport.ts
-export class PageTransport {
-    send() {
-        console.log("PageTransport called");
-    }
-}
+// Define globally for libraries that expect it
+(window as any).PageTransport = {
+    send: (...args: any[]) => {
+        console.log("PageTransport stub called with", args);
+    },
+};
