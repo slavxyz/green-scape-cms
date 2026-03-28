@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 border-t border-primary-foreground/20 pt-6 text-center text-sm text-primary-foreground/60">
-          © {new Date().getFullYear()} <a href="http://devhillslab.com">DevHillsLab</a> {t("footer.rights")}
+          © {new Date().getFullYear()} <a className="devhillslab" href="http://devhillslab.com">DevHillsLab</a> {t("footer.rights")}
         </div>
       </div>
     </footer>
