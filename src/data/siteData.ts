@@ -42,6 +42,7 @@ export interface SiteData {
 }
 
 export const defaultSiteData: SiteData = {
+  activeLogo: "default",
   companyName: "Зелено дворче",
   phone: "0885 80 99 36",
   heroImages: [

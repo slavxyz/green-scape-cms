@@ -33,6 +33,7 @@ export function SiteDataProvider({ children }: { children: ReactNode }) {
     updateAbout: (about) => update({ about }),
     updateHeroImages: (images) => update({ heroImages: images }),
     updateCompanyInfo: (companyName, phone) => update({ companyName, phone }),
+    updateActiveLogo: (activeLogo) => update({ activeLogo }),
   };
 
   return <SiteDataContext.Provider value={value}>{children}</SiteDataContext.Provider>;
