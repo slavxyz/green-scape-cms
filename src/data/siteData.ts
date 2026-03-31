@@ -38,6 +38,7 @@ export interface SiteData {
   heroImages: string[];
   companyName: string;
   phone: string;
+  activeLogo: "default" | "easter";
 }
 
 export const defaultSiteData: SiteData = {
