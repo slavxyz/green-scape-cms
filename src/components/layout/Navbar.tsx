@@ -30,6 +30,11 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Mobile call banner */}
+      <div className="flex items-center justify-center gap-2 bg-primary py-1.5 text-xs font-semibold text-primary-foreground sm:hidden">
+        <Phone className="h-3.5 w-3.5" />
+        <a href={`tel:${data.phone}`}>{t("nav.callUs", "Обадете ни се")}: {data.phone}</a>
+      </div>
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img
