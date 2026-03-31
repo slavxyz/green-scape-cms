@@ -32,7 +32,11 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <Leaf className="h-7 w-7 text-primary" />
+          <img
+            src={data.activeLogo === "easter" ? logoEaster : logoDefault}
+            alt={data.companyName}
+            className="h-10 w-10 rounded-full object-cover"
+          />
           <span className="font-display text-xl font-bold text-primary">{data.companyName}</span>
         </Link>
 
