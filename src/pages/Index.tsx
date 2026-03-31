@@ -6,6 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import apobLogo from "@/assets/apob-logo.jpeg";
 
 const Index = () => {
   const { t } = useLanguage();
@@ -16,6 +17,33 @@ const Index = () => {
       <main className="flex-1">
         <HeroCarousel />
         <ServicesSection />
+
+        <section className="py-16 md:py-24 bg-muted/40">
+          <div className="container">
+            <div className="flex flex-col items-center gap-8 md:flex-row md:gap-12">
+              <a
+                href="https://apobg.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 transition-transform hover:scale-105"
+              >
+                <img
+                  src={apobLogo}
+                  alt="Асоциация на Професионалните Озеленители в България (АПОБ)"
+                  className="h-40 w-40 rounded-full object-cover shadow-lg md:h-52 md:w-52"
+                />
+              </a>
+              <div className="text-center md:text-left">
+                <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+                  {t("apob.title")}
+                </h2>
+                <p className="mt-4 max-w-2xl text-muted-foreground leading-relaxed">
+                  {t("apob.description")}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="py-16 md:py-24">
           <div className="container text-center">
