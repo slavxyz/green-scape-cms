@@ -10,11 +10,13 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Plus, Trash2, Save, Leaf, Globe } from "lucide-react";
+import logoDefault from "@/assets/logo-default.jpeg";
+import logoEaster from "@/assets/logo-easter.jpeg";
 import { toast } from "sonner";
 import type { Service, Project, BlogPost } from "@/data/siteData";
 
 export default function Admin() {
-  const { data, updateServices, updateProjects, updateBlogPosts, updateAbout, updateCompanyInfo } = useSiteData();
+  const { data, updateServices, updateProjects, updateBlogPosts, updateAbout, updateCompanyInfo, updateActiveLogo } = useSiteData();
   const { languages, addLanguage, removeLanguage, translations, setTranslations } = useLanguage();
 
   const [services, setServices] = useState<Service[]>(data.services);
@@ -260,7 +262,25 @@ export default function Admin() {
                   </div>
                 </div>
                 <div>
-                  <Label>Our Story</Label>
+                  <Label>Site Logo</Label>
+                  <div className="mt-2 flex gap-4">
+                    {[
+                      { key: "default" as const, src: logoDefault, label: "Default" },
+                      { key: "easter" as const, src: logoEaster, label: "Easter" },
+                    ].map((logo) => (
+                      <button
+                        key={logo.key}
+                        type="button"
+                        onClick={() => updateActiveLogo(logo.key)}
+                        className={`flex flex-col items-center gap-2 rounded-lg border-2 p-3 transition-colors ${
+                          data.activeLogo === logo.key ? "border-primary bg-primary/10" : "border-muted hover:border-primary/50"
+                        }`}
+                      >
+                        <img src={logo.src} alt={logo.label} className="h-16 w-16 rounded-full object-cover" />
+                        <span className="text-sm font-medium">{logo.label}</span>
+                      </button>
+                    ))}
+                  </div>
                   <Textarea rows={4} value={about.story} onChange={(e) => setAbout({ ...about, story: e.target.value })} />
                 </div>
                 <div>

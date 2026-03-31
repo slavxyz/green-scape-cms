@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone, Menu, X, Leaf, Globe } from "lucide-react";
+import { Phone, Menu, X, Globe } from "lucide-react";
+import logoDefault from "@/assets/logo-default.jpeg";
+import logoEaster from "@/assets/logo-easter.jpeg";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -30,7 +32,11 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <Leaf className="h-7 w-7 text-primary" />
+          <img
+            src={data.activeLogo === "easter" ? logoEaster : logoDefault}
+            alt={data.companyName}
+            className="h-10 w-10 rounded-full object-cover"
+          />
           <span className="font-display text-xl font-bold text-primary">{data.companyName}</span>
         </Link>
 
