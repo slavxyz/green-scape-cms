@@ -16,7 +16,7 @@ import { toast } from "sonner";
 import type { Service, Project, BlogPost } from "@/data/siteData";
 
 export default function Admin() {
-  const { data, updateServices, updateProjects, updateBlogPosts, updateAbout, updateCompanyInfo } = useSiteData();
+  const { data, updateServices, updateProjects, updateBlogPosts, updateAbout, updateCompanyInfo, updateActiveLogo } = useSiteData();
   const { languages, addLanguage, removeLanguage, translations, setTranslations } = useLanguage();
 
   const [services, setServices] = useState<Service[]>(data.services);
