@@ -18,7 +18,7 @@ const Index = () => {
         <HeroCarousel />
         <ServicesSection />
 
-        <section className="py-16 md:py-24 bg-muted/40">
+        <section className="py-16 md:py-24 bg-background">
           <div className="container flex flex-col items-center text-center">
             <h2 className="font-display text-2xl font-bold text-foreground md:text-3xl max-w-3xl">
               {t("apob.title")}
