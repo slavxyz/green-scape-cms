@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Phone, Menu, X, Leaf, Globe } from "lucide-react";
+import { Phone, Menu, X, Globe } from "lucide-react";
+import logoDefault from "@/assets/logo-default.jpeg";
+import logoEaster from "@/assets/logo-easter.jpeg";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
