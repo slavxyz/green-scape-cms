@@ -161,7 +161,7 @@ export default function Admin() {
             <div className="flex items-center justify-between">
               <h2 className="font-display text-xl font-bold">Manage Projects</h2>
               <div className="flex gap-2">
-                <Button size="sm" variant="outline" onClick={() => setProjects([...projects, { id: Date.now().toString(), title: "", description: "", image: "", date: new Date().toISOString().split("T")[0] }])}>
+                <Button size="sm" variant="outline" onClick={() => setProjects([...projects, { id: Date.now().toString(), title: "", description: "", longDescription: "", image: "", gallery: [], date: new Date().toISOString().split("T")[0] }])}>
                   <Plus className="mr-1 h-4 w-4" /> Add
                 </Button>
                 <Button size="sm" onClick={saveProjects}><Save className="mr-1 h-4 w-4" /> Save</Button>
