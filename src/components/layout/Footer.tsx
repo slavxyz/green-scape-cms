@@ -22,7 +22,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <Leaf className="h-6 w-6" />
+              <img src={data.activeLogo === "easter" ? logoEaster : logoDefault} alt={data.companyName} className="h-8 w-8 rounded-full object-cover" />
               <span className="font-display text-lg font-bold">{data.companyName}</span>
             </div>
             <p className="mt-3 text-sm text-primary-foreground/80">{t("footer.description")}</p>
