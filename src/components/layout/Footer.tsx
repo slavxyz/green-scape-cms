@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Leaf, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import logoDefault from "@/assets/logo-default.jpeg";
+import logoEaster from "@/assets/logo-easter.jpeg";
 
 export default function Footer() {
   const { data } = useSiteData();
@@ -20,7 +22,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-2">
-              <Leaf className="h-6 w-6" />
+              <img src={data.activeLogo === "easter" ? logoEaster : logoDefault} alt={data.companyName} className="h-8 w-8 rounded-full object-cover" />
               <span className="font-display text-lg font-bold">{data.companyName}</span>
             </div>
             <p className="mt-3 text-sm text-primary-foreground/80">{t("footer.description")}</p>
