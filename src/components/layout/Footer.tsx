@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { useSiteData } from "@/contexts/SiteDataContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Leaf, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import logoDefault from "@/assets/logo-default.jpeg";
+import logoEaster from "@/assets/logo-easter.jpeg";
 
 export default function Footer() {
   const { data } = useSiteData();
