@@ -31,7 +31,7 @@ export default function ProjectDetails() {
     );
   }
 
-  const images = project.gallery.length > 0 ? project.gallery : [project.image];
+  const images = (project.gallery && project.gallery.length > 0) ? project.gallery : [project.image];
   const title = t(`project.${project.id}.title`, project.title);
   const longDesc = t(`project.${project.id}.longDescription`, project.longDescription || project.description);
 
