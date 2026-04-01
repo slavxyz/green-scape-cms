@@ -179,12 +179,60 @@ export default function Admin() {
                     <Input type="date" value={p.date} onChange={(e) => { const next = [...projects]; next[i] = { ...p, date: e.target.value }; setProjects(next); }} />
                   </div>
                   <div className="sm:col-span-2">
-                    <Label>Image URL</Label>
+                    <Label>Cover Image URL</Label>
                     <Input value={p.image} onChange={(e) => { const next = [...projects]; next[i] = { ...p, image: e.target.value }; setProjects(next); }} />
                   </div>
                   <div className="sm:col-span-2">
-                    <Label>Description</Label>
-                    <Textarea value={p.description} onChange={(e) => { const next = [...projects]; next[i] = { ...p, description: e.target.value }; setProjects(next); }} />
+                    <Label>Short Description</Label>
+                    <Textarea rows={2} value={p.description} onChange={(e) => { const next = [...projects]; next[i] = { ...p, description: e.target.value }; setProjects(next); }} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <Label>Long Description (Details Page)</Label>
+                    <Textarea rows={5} value={p.longDescription || ""} onChange={(e) => { const next = [...projects]; next[i] = { ...p, longDescription: e.target.value }; setProjects(next); }} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <Label>Gallery Images</Label>
+                    <div className="mt-2 space-y-2">
+                      {(p.gallery || []).map((img, gi) => (
+                        <div key={gi} className="flex gap-2">
+                          <Input
+                            value={img}
+                            placeholder="Image URL"
+                            onChange={(e) => {
+                              const next = [...projects];
+                              const gallery = [...(next[i].gallery || [])];
+                              gallery[gi] = e.target.value;
+                              next[i] = { ...next[i], gallery };
+                              setProjects(next);
+                            }}
+                          />
+                          <Button
+                            variant="destructive"
+                            size="icon"
+                            onClick={() => {
+                              const next = [...projects];
+                              const gallery = [...(next[i].gallery || [])];
+                              gallery.splice(gi, 1);
+                              next[i] = { ...next[i], gallery };
+                              setProjects(next);
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const next = [...projects];
+                          next[i] = { ...next[i], gallery: [...(next[i].gallery || []), ""] };
+                          setProjects(next);
+                        }}
+                      >
+                        <Plus className="mr-1 h-4 w-4" /> Add Image
+                      </Button>
+                    </div>
                   </div>
                   <Button variant="destructive" size="sm" className="w-fit" onClick={() => setProjects(projects.filter((_, j) => j !== i))}>
                     <Trash2 className="mr-1 h-4 w-4" /> Remove
