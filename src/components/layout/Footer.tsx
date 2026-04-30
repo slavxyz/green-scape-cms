@@ -45,8 +45,8 @@ export default function Footer() {
               <a href={`tel:${data.phone}`} className="flex items-center gap-2 hover:text-primary-foreground">
                 <Phone className="h-4 w-4" /> {data.phone}
               </a>
-              <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> info@greenscapepro.com</div>
-              <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> 123 Garden Lane, Springfield</div>
+              <div className="flex items-center gap-2"><Mail className="h-4 w-4" /> office@zelenodvorche.com</div>
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> гр.Пловдив ул.Бугариево 6</div>
             </div>
           </div>
         </div>
